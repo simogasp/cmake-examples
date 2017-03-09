@@ -38,6 +38,41 @@ before_script:
 
 script:
   - make install -j${NUM_CPU}
+  # build separately the libs
+  # build Foo
+  - cd ${TRAVIS_BUILD_DIR}/libFoo
+  - mkdir build && cd build
+  - cmake .. -DCMAKE_INSTALL_PREFIX:PATH=`pwd`/install
+  - make install -j${NUM_CPU}
+  - export FOODIR=`pwd`/install/lib/cmake/Foo/;
+  # build Fooer
+  - cd ${TRAVIS_BUILD_DIR}/libFooer
+  - mkdir build && cd build
+  - cmake .. -DCMAKE_INSTALL_PREFIX:PATH=`pwd`/install -DFoo_DIR=${FOODIR}
+  - make install -j2
+  - export FOOERDIR=`pwd`/install/lib/cmake/Fooer/;
+  # build Fooer
+  - cd ${TRAVIS_BUILD_DIR}/libBoostFooer
+  - mkdir build && cd build
+  - cmake .. -DCMAKE_INSTALL_PREFIX:PATH=`pwd`/install -DFooer_DIR=${FOOERDIR}
+  - make install -j${NUM_CPU}
+  - export BOOSTFOOERDIR=`pwd`/install/lib/cmake/BoostFooer/;
+  # build separately the exe
+  # build exampleLibFoo
+  - cd ${TRAVIS_BUILD_DIR}/exampleLibFoo
+  - mkdir build && cd build
+  - cmake .. -DCMAKE_INSTALL_PREFIX:PATH=`pwd`/install -DFoo_DIR=${FOODIR}
+  - make install -j${NUM_CPU}
+  # build exampleLibFooer
+  - cd ${TRAVIS_BUILD_DIR}/exampleLibFooer
+  - mkdir build && cd build
+  - cmake .. -DCMAKE_INSTALL_PREFIX:PATH=`pwd`/install -DFooer_DIR=${FOOERDIR}
+  - make install -j${NUM_CPU}
+  # build exampleLibBoostFooer
+  - cd ${TRAVIS_BUILD_DIR}/exampleLibBoostFooer
+  - mkdir build && cd build
+  - cmake .. -DCMAKE_INSTALL_PREFIX:PATH=`pwd`/install -DBoostFooer_DIR=${BOOSTFOOERDIR}
+  - make install -j${NUM_CPU}
 
 
 cache:
