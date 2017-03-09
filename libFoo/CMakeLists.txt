@@ -24,8 +24,8 @@ project(Foo VERSION 1.2.3)
 
 ####
 # Create targets
-add_library(bar "Source/foo/Bar.cpp" "Source/foo/Bar.hpp")
-add_library(baz SHARED "Source/foo/Baz.cpp" "Source/foo/Baz.hpp")
+add_library(bar "src/foo/Bar.cpp" "src/foo/Bar.hpp")
+add_library(baz SHARED "src/foo/Baz.cpp" "src/foo/Baz.hpp")
 
 ####
 # Properties of targets
@@ -48,13 +48,13 @@ generate_export_header(baz)
 
 # Global includes. Used by all targets
 # Note:
-#   * header location in project: Foo/Source/foo/Bar.hpp
+#   * header location in project: Foo/src/foo/Bar.hpp
 #   * header can be included by C++ code `#include <foo/Bar.hpp>`
 #   * header location in project: ${CMAKE_CURRENT_BINARY_DIR}/bar_export.hpp
 #   * header can be included by: `#include <bar_export.hpp>`
 target_include_directories(
     baz PUBLIC
-    "$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/Source>"
+    "$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/src>"
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>"
 )
 
@@ -116,10 +116,10 @@ install(
 )
 
 # Headers:
-#   * Source/foo/Bar.hpp -> <prefix>/include/foo/Bar.hpp
-#   * Source/foo/Baz.hpp -> <prefix>/include/foo/Baz.hpp
+#   * src/foo/Bar.hpp -> <prefix>/include/foo/Bar.hpp
+#   * src/foo/Baz.hpp -> <prefix>/include/foo/Baz.hpp
 install(
-    DIRECTORY "Source/foo"
+    DIRECTORY "src/foo"
     DESTINATION "${include_install_dir}"
     FILES_MATCHING PATTERN "*.hpp"
 )
