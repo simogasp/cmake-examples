@@ -34,7 +34,7 @@ before_script:
   - sudo apt-get install libboost-filesystem-dev 
   - mkdir build
   - cd build
-  - cmake .. -DCMAKE_INSTALL_PREFIX:PATH=`pwd`/install
+  - cmake .. -DCMAKE_INSTALL_PREFIX:PATH=`pwd`/install -DCMAKE_BUILD_TYPE=${BUILD_TYPE}
   - export COMMONDIR=`pwd`/install/lib/cmake/;
 
 script:
