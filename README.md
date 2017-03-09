@@ -8,22 +8,22 @@ The examples are partially inspired and taken from this repository https://githu
 
 The repository contains some examples of libraries
 
-*  `libFoo` is a library composed of two dependent libraries, `bar` and `baz` , with `bar` depending on `baz`
+* `libFoo` is a library composed of two dependent libraries, `bar` and `baz` , with `bar` depending on `baz`
 * `libFooer` is a library depending of `libbar`
   * It shows how the dependencies are propagated through the LIBRARYConfig.cmake
 * `libBoostFooer` is a library depending of `libFooer` and Boost
-  * It show how to include a library having a cmake config and a library which only provides a FindLIBRARY.cmake
+  * It shows how to include a library having a cmake config and a library which only provides a FindLIBRARY.cmake
 
 Some examples on how to use the libraries:
 
-* `exampleFoo` show how to build an application using `libFoo`
-* `exampleFooer` show how to build an application using `libFooer`
+* `exampleFoo` shows how to build an application using `libFoo`
+* `exampleFooer` shows how to build an application using `libFooer`
 
 
 
 ## Build
 
-The repository can be built either monolithically using the `CMakeLists.txt` on the root or by compiling and installing each library separately.
+The repository can be built either monolithically using the `CMakeLists.txt` in the root or by compiling and installing each library separately.
 
 Continuous integration: 
  - [![Build Status](https://travis-ci.org/simogasp/cmake-examples.svg?branch=master)](https://travis-ci.org/simogasp/cmake-examples) master branch.
