@@ -89,6 +89,8 @@ target_include_directories(
 target_link_libraries(boostFooer PUBLIC Fooer::fooer PRIVATE ${Boost_LIBRARIES})
 set_target_properties(boostFooer PROPERTIES VERSION ${PROJECT_VERSION})
 set_target_properties(boostFooer PROPERTIES DEBUG_POSTFIX "d")
+# allows to generate proper symlinks for shared libs
+set_target_properties(boostFooer PROPERTIES VERSION ${PROJECT_VERSION})
 #set_target_properties(boostFooer PROPERTIES CXX_STANDARD 11)
 #target_compile_features(boostFooer PRIVATE cxx_range_for)
 

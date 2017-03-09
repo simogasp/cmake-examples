@@ -79,6 +79,10 @@ target_include_directories(
 # Link required library
 target_link_libraries(fooer PUBLIC Foo::bar)
 
+set_target_properties(fooer PROPERTIES DEBUG_POSTFIX "d")
+# allows to generate proper symlinks for shared libs
+set_target_properties(fooer PROPERTIES VERSION ${PROJECT_VERSION})
+
 ####
 # Installation (https://github.com/forexample/package-example)
 

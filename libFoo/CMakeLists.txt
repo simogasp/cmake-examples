@@ -61,6 +61,8 @@ target_include_directories(
 # Link required library
 target_link_libraries(bar PUBLIC baz)
 
+set_target_properties(bar PROPERTIES DEBUG_POSTFIX "d")
+set_target_properties(baz PROPERTIES DEBUG_POSTFIX "d")
 set_target_properties(bar PROPERTIES VERSION ${PROJECT_VERSION})
 set_target_properties(baz PROPERTIES VERSION ${PROJECT_VERSION})
 
