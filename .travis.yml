@@ -93,6 +93,19 @@ script:
   - cmake .. -DCMAKE_INSTALL_PREFIX:PATH=`pwd`/install -DBoostFooer_DIR=${BOOSTFOOERDIR}
   - make install -j${NUM_CPU}
 
+  # test build with dependencies
+  # build BoostFooer letting it to build the dependencies
+  - cd ${TRAVIS_BUILD_DIR}/libBoostFooer
+  - mkdir build3rdparts && cd build3rdparts
+  - cmake .. -DCMAKE_INSTALL_PREFIX:PATH=`pwd`/install
+  - make install -j${NUM_CPU}
+  - export BOOSTFOOERDIR_3RDPART=`pwd`/install/lib/cmake/BoostFooer/;
+  # build exampleLibBoostFooer
+  - cd ${TRAVIS_BUILD_DIR}/exampleLibBoostFooer
+  - mkdir build3rdparts && cd build3rdparts
+  - cmake .. -DCMAKE_INSTALL_PREFIX:PATH=`pwd`/install -DBoostFooer_DIR=${BOOSTFOOERDIR_3RDPART}
+  - make install -j${NUM_CPU}
+
 
 cache:
   directories:
