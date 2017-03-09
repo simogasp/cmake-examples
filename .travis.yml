@@ -68,7 +68,7 @@ script:
   - cmake .. -DCMAKE_INSTALL_PREFIX:PATH=`pwd`/install -DFoo_DIR=${FOODIR}
   - make install -j2
   - export FOOERDIR=`pwd`/install/lib/cmake/Fooer/;
-  # build Fooer
+  # build BoostFooer
   - cd ${TRAVIS_BUILD_DIR}/libBoostFooer
   - mkdir build && cd build
   - cmake .. -DCMAKE_INSTALL_PREFIX:PATH=`pwd`/install -DFooer_DIR=${FOOERDIR}
