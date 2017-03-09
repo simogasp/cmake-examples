@@ -35,7 +35,17 @@ else()
   # to avoid searching in temporary build directory of Foo project
   # See 5:
   #    * http://www.cmake.org/cmake/help/v3.0/command/find_package.html
-  find_package(Fooer CONFIG REQUIRED)
+  find_package(Fooer CONFIG QUIET)
+  
+  if(NOT Fooer_FOUND)
+    # if not found add from tree
+    set(Foo_DIR "${CMAKE_INSTALL_PREFIX}/lib/cmake/Foo")
+    set(Fooer_DIR "${CMAKE_INSTALL_PREFIX}/lib/cmake/Fooer")
+    add_subdirectory(src/3rdparty/libFoo)
+    add_subdirectory(src/3rdparty/libFooer)
+    add_library(Fooer::fooer ALIAS fooer)
+  endif()
+    
 endif()
 
 find_package(Boost REQUIRED COMPONENTS filesystem)
