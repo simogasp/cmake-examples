@@ -25,6 +25,9 @@ Some examples on how to use the libraries:
 
 The repository can be built either monolithically using the `CMakeLists.txt` on the root or by compiling and installing each library separately.
 
+Continuous integration: 
+ - [![Build Status](https://travis-ci.org/simogasp/cmake-examples.svg?branch=master)](https://travis-ci.org/simogasp/cmake-examples) master branch.
+
 ### Monolithic build
 
 ```bash
