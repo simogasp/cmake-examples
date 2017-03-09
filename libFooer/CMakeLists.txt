@@ -136,7 +136,7 @@ install(
 install(
     FILES
         "${CMAKE_CURRENT_BINARY_DIR}/fooer_config.hpp"
-    DESTINATION "${include_install_dir}/fooer"
+    DESTINATION "${include_install_dir}"
 )
 
 # Config
