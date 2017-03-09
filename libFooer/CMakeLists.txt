@@ -49,7 +49,7 @@ endif()
 
 
 # Generate:
-#   * ${CMAKE_CURRENT_BINARY_DIR}/fooer_export.h with BAR_EXPORT
+#   * ${CMAKE_CURRENT_BINARY_DIR}/fooer_export.h with FOOER_EXPORT
 include(GenerateExportHeader)
 generate_export_header(fooer)
 
@@ -57,10 +57,10 @@ configure_file("cmake/fooer_config.hpp.in" fooer_config.hpp @ONLY)
 
 # Global includes. Used by all targets
 # Note:
-#   * header location in project: Foo/Source/foo/Bar.hpp
-#   * header can be included by C++ code `#include <foo/Bar.hpp>`
-#   * header location in project: ${CMAKE_CURRENT_BINARY_DIR}/bar_export.hpp
-#   * header can be included by: `#include <bar_export.hpp>`
+#   * header location in project: Fooer/src/fooer/Fooer.hpp
+#   * header can be included by C++ code `#include <fooer/Fooer.hpp>`
+#   * header location in project: ${CMAKE_CURRENT_BINARY_DIR}/fooer_export.hpp
+#   * header can be included by: `#include <fooer_export.hpp>`
 target_include_directories(
     fooer PUBLIC
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/src>"
