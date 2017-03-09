@@ -1,0 +1,45 @@
+language: cpp
+compiler:
+  - gcc
+
+env:
+  global:
+    - NUM_CPU="`grep processor /proc/cpuinfo | wc -l`"; echo $NUM_CPU
+    - BUILD_TYPE="RELEASE"
+    # CMAKE
+    - CMAKE_URL="https://cmake.org/files/v3.6/cmake-3.6.1-Linux-x86_64.tar.gz"
+    - CMAKE_ROOT=${HOME}/cmake
+    - CMAKE_SOURCE=${CMAKE_ROOT}/source
+    - CMAKE_INSTALL=${CMAKE_ROOT}/install
+
+before_install:
+ # CMAKE most recent version
+ - >
+    if [ "$(ls -A ${CMAKE_INSTALL})" ]; then
+      echo "CMake found in cache.";
+      ls -A ${CMAKE_INSTALL}
+      export PATH=${CMAKE_INSTALL}/bin:${PATH};
+      cmake --version
+    else
+      mkdir --parent ${CMAKE_SOURCE}
+      mkdir --parent ${CMAKE_INSTALL}
+      ls -A ${CMAKE_INSTALL}
+      travis_retry wget --no-check-certificate --quiet -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C ${CMAKE_INSTALL}
+      export PATH=${CMAKE_INSTALL}/bin:${PATH};
+      cmake --version
+    fi
+
+before_script:
+  - sudo apt-get update -qq
+  - sudo apt-get install libboost-filesystem-dev 
+  - mkdir build
+  - cd build
+  - cmake .. -DCMAKE_INSTALL_PREFIX:PATH=`pwd`/install
+
+script:
+  - make install -j${NUM_CPU}
+
+
+cache:
+  directories:
+    - $CMAKE_INSTALL
