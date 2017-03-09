@@ -19,6 +19,9 @@ project(BoostFooer VERSION 3.2.1)
 
 if(TARGET fooer)
   add_library(Fooer::fooer ALIAS fooer)
+  if(NOT DEFINED Fooer_DIR)
+    set(Fooer_DIR "${CMAKE_INSTALL_PREFIX}/lib/cmake/Fooer")
+  endif()
 else()
   # Add NO_CMAKE_BUILDS_PATH for windows if using CMake-GUI to build packages
   # to avoid searching in temporary build directory of Foo project

@@ -19,6 +19,9 @@ project(Fooer VERSION 3.2.1)
 
 if(TARGET bar)
   add_library(Foo::bar ALIAS bar)
+  if(NOT DEFINED Foo_DIR)
+    set(Foo_DIR "${CMAKE_INSTALL_PREFIX}/lib/cmake/Foo")
+  endif()
 else()
   # Add NO_CMAKE_BUILDS_PATH for windows if using CMake-GUI to build packages
   # to avoid searching in temporary build directory of Foo project
