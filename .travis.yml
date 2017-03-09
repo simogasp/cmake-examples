@@ -35,8 +35,25 @@ before_script:
   - mkdir build
   - cd build
   - cmake .. -DCMAKE_INSTALL_PREFIX:PATH=`pwd`/install
+  - export COMMONDIR=`pwd`/install/lib/cmake/;
 
 script:
+  - make install -j${NUM_CPU}
+  # test building exe from installed
+  # build exampleLibFoo
+  - cd ${TRAVIS_BUILD_DIR}/exampleLibFoo
+  - mkdir build && cd build
+  - cmake .. -DCMAKE_INSTALL_PREFIX:PATH=`pwd`/install -DFoo_DIR=${COMMONDIR}/Foo
+  - make install -j${NUM_CPU}
+  # build exampleLibFooer
+  - cd ${TRAVIS_BUILD_DIR}/exampleLibFooer
+  - mkdir build && cd build
+  - cmake .. -DCMAKE_INSTALL_PREFIX:PATH=`pwd`/install -DFooer_DIR=${COMMONDIR}/Fooer
+  - make install -j${NUM_CPU}
+  # build exampleLibBoostFooer
+  - cd ${TRAVIS_BUILD_DIR}/exampleLibBoostFooer
+  - mkdir build && cd build
+  - cmake .. -DCMAKE_INSTALL_PREFIX:PATH=`pwd`/install -DBoostFooer_DIR=${COMMONDIR}BoostFooer
   - make install -j${NUM_CPU}
   # build separately the libs
   # build Foo
@@ -60,17 +77,17 @@ script:
   # build separately the exe
   # build exampleLibFoo
   - cd ${TRAVIS_BUILD_DIR}/exampleLibFoo
-  - mkdir build && cd build
+  - mkdir buildsolo && cd buildsolo
   - cmake .. -DCMAKE_INSTALL_PREFIX:PATH=`pwd`/install -DFoo_DIR=${FOODIR}
   - make install -j${NUM_CPU}
   # build exampleLibFooer
   - cd ${TRAVIS_BUILD_DIR}/exampleLibFooer
-  - mkdir build && cd build
+  - mkdir buildsolo && cd buildsolo
   - cmake .. -DCMAKE_INSTALL_PREFIX:PATH=`pwd`/install -DFooer_DIR=${FOOERDIR}
   - make install -j${NUM_CPU}
   # build exampleLibBoostFooer
   - cd ${TRAVIS_BUILD_DIR}/exampleLibBoostFooer
-  - mkdir build && cd build
+  - mkdir buildsolo && cd buildsolo
   - cmake .. -DCMAKE_INSTALL_PREFIX:PATH=`pwd`/install -DBoostFooer_DIR=${BOOSTFOOERDIR}
   - make install -j${NUM_CPU}
 
