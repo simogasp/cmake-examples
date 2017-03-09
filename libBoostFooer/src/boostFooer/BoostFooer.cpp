@@ -1,7 +1,7 @@
 #include <boostFooer/BoostFooer.hpp>
 #include <boost/filesystem.hpp>
 
-namespace fooer {
+namespace boostFooer {
 
 void BoostFooer::cpp_say() 
 {

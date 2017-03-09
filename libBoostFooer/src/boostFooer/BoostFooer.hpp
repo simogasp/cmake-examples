@@ -4,7 +4,7 @@
 #include <fooer/Fooer.hpp>
 #include <boost_fooer_export.h>
 
-namespace fooer {
+namespace boostFooer {
 
 class BoostFooer {
  public:
