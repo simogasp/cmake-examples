@@ -18,10 +18,19 @@ cmake_minimum_required(VERSION 3.0)
 project(Fooer VERSION 3.2.1)
 
 if(TARGET bar)
+  # it means the target is already defined somewhere, typically when building
+  # the whole project as a monolith
   add_library(Foo::bar ALIAS bar)
+  
+  # this is needed for the propagation with the FooerConfig.cmake: if we are in a
+  # monolithic build, it means that the target bar is being built with the current
+  # target and it will be installed in the same location, ie ${CMAKE_INSTALL_PREFIX}
+  # So define Foo_DIR, if not the case, to point to that location, that way 
+  # FooerConfig.cmake will set it as well and it will propagate the dependency.
   if(NOT DEFINED Foo_DIR)
     set(Foo_DIR "${CMAKE_INSTALL_PREFIX}/lib/cmake/Foo")
   endif()
+
 else()
   # Add NO_CMAKE_BUILDS_PATH for windows if using CMake-GUI to build packages
   # to avoid searching in temporary build directory of Foo project

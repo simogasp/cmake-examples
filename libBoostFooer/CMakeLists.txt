@@ -18,7 +18,15 @@ cmake_minimum_required(VERSION 3.0)
 project(BoostFooer VERSION 3.2.1)
 
 if(TARGET fooer)
+  # it means the target is already defined somewhere, typically when building
+  # the whole project as a monolith
   add_library(Fooer::fooer ALIAS fooer)
+  
+  # this is needed for the propagation with the BoostFooerConfig.cmake: if we are in a
+  # monolithic build, it means that the target fooer is being built with the current
+  # target and it will be installed in the same location, ie ${CMAKE_INSTALL_PREFIX}
+  # So define Fooer_DIR, if not the case, to point to that location, that way 
+  # BoostFooerConfig.cmake will set it as well and it will propagate the dependency.
   if(NOT DEFINED Fooer_DIR)
     set(Fooer_DIR "${CMAKE_INSTALL_PREFIX}/lib/cmake/Fooer")
   endif()
@@ -72,7 +80,7 @@ target_link_libraries(boostFooer PUBLIC Fooer::fooer PRIVATE ${Boost_LIBRARIES})
 set_target_properties(boostFooer PROPERTIES VERSION ${PROJECT_VERSION})
 set_target_properties(boostFooer PROPERTIES DEBUG_POSTFIX "d")
 #set_target_properties(boostFooer PROPERTIES CXX_STANDARD 11)
-target_compile_features(boostFooer PRIVATE cxx_range_for)
+#target_compile_features(boostFooer PRIVATE cxx_range_for)
 
 ####
 # Installation (https://github.com/forexample/package-example)
