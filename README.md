@@ -1,4 +1,4 @@
-#CMake examples
+# CMake examples
 
 Some examples on how to create libraries with CMake and properly use them in other CMake projects using the `LIBRARYConfig.cmake` files. 
 
