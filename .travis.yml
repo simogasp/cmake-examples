@@ -11,8 +11,25 @@ env:
     - CMAKE_ROOT=${HOME}/cmake
     - CMAKE_SOURCE=${CMAKE_ROOT}/source
     - CMAKE_INSTALL=${CMAKE_ROOT}/install
+   # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
+   #   via the "travis encrypt" command using the project repo's public key
+   - secure: "C36WL6IDfn3FDv/PEy5GTnVh86mo0nnGlImkLjZRjG0aEQIt7OvzMDXELDhkrVt4uIBidrpHRr7W0fWiz54ct5IKfd3TD5RfHiqP00JqSfZF7a7c65YHiqDcYy7IzC+BFPNgaxl1zbMS1MkVk8Vz6RgcWdJmf+b+BE1mWpN3oUZ45v7BNa3Nit/5MvhG83nYlts0bubWhAAsRlAPus8SG8AQdNMYpKosIqBAilh3A7b82rM1yBGaHtsD4uVVJOSXuOPpPv5gynT/7AVfUPZ6yyCJ5onKoUVfr63xWdlGoLb6AcVv4YZ55FyBoGfmdha+e6k0srwbU6SVtHJ3mMkcWGWzzsbjn28ll44UKKrXtz+T2i7cWQalcHDNyJs4Od1dxbzDg+R622FlgoUFId5oNVabRPuuPXwj0wQtswKy++8XyelB3gU7AxBXTP+6TTO/RdV5GyeL9dji6S/CwQ74ki1cRrZeuRQIWg1+eZ9JrNPUA0kNX3ZNuuGjfg88CT2VJzPBDWH7KpLHMRxhrS1YDNYlWf1H7OucJvpcWYNy9a/AWJAEBGnDFAW4TKoVYMjmjG0d+rZ4BJ21KbxM+LY2ybuaeY+Ve/uybfRIcgzoHocN5/vM/kP3rfyR0wHUJBV9aKT9nzyt2C62un6+QU1W808Tb6EouYe2ct/H+UN9Flc="
+
+addons:
+  coverity_scan:
+    project:
+      name: "simogasp/cmake-examples"
+      description: "Cmake tutorial"
+    notification_email: simone.gasparini@gmail.com
+    build_command_prepend: "mkdir build; cd build; cmake .. -DCMAKE_INSTALL_PREFIX:PATH=`pwd`/install -DCMAKE_BUILD_TYPE=Release"
+    build_command:   "make install -j2"
+    branch_pattern: coverity_scan
+
 
 before_install:
+ # coverity stuff
+ - echo -n | openssl s_client -connect scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
+
  # CMAKE most recent version
  - >
     if [ "$(ls -A ${CMAKE_INSTALL})" ]; then
