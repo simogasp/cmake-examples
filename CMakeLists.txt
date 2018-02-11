@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.0)
 
+project(cmake-examples)
+
 # Monolithic version
 add_subdirectory(libFoo)
 add_subdirectory(libFooer)
