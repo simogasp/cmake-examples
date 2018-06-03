@@ -27,6 +27,7 @@ The repository can be built either monolithically using the `CMakeLists.txt` in 
 
 Continuous integration: 
  - [![Build Status](https://travis-ci.org/simogasp/cmake-examples.svg?branch=master)](https://travis-ci.org/simogasp/cmake-examples) master branch.
+ - [![Build status](https://ci.appveyor.com/api/projects/status/do663fdgpmqdwpdm?svg=true)](https://ci.appveyor.com/project/simogasp/cmake-examples) master branch.
 
 ### Monolithic build
 
