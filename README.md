@@ -28,6 +28,10 @@ The repository can be built either monolithically using the `CMakeLists.txt` in 
 Continuous integration: 
  - [![Build Status](https://travis-ci.org/simogasp/cmake-examples.svg?branch=master)](https://travis-ci.org/simogasp/cmake-examples) master branch.
  - [![Build status](https://ci.appveyor.com/api/projects/status/do663fdgpmqdwpdm?svg=true)](https://ci.appveyor.com/project/simogasp/cmake-examples) master branch.
+ - [![Build Status](https://dev.azure.com/simogasp/cmake-examples/_apis/build/status/simogasp.cmake-examples?branchName=master&jobName=Ubuntu_1604)](https://dev.azure.com/simogasp/cmake-examples/_build/latest?definitionId=1&branchName=master) Ubuntu 16.04
+ - [![Build Status](https://dev.azure.com/simogasp/cmake-examples/_apis/build/status/simogasp.cmake-examples?branchName=master&jobName=macos_10_14)](https://dev.azure.com/simogasp/cmake-examples/_build/latest?definitionId=1&branchName=master) OSX 10.14
+ - [![Build Status](https://dev.azure.com/simogasp/cmake-examples/_apis/build/status/simogasp.cmake-examples?branchName=master&jobName=Windows_VS2017_Hosted)](https://dev.azure.com/simogasp/cmake-examples/_build/latest?definitionId=1&branchName=master) Windows VS 2017
+ - [![Build Status](https://dev.azure.com/simogasp/cmake-examples/_apis/build/status/simogasp.cmake-examples?branchName=master&jobName=Windows_VS2019_Hosted)](https://dev.azure.com/simogasp/cmake-examples/_build/latest?definitionId=1&branchName=master) Windows VS 2019
 
 ### Monolithic build
 
