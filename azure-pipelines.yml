@@ -39,3 +39,39 @@ jobs:
         cmakeListsTxtPath: CMakeLists.txt
         useVcpkgToolchainFile: true
         cmakeAppendedArgs: '-G Ninja -DCMAKE_BUILD_TYPE=Release'
+        
+  - job: Windows_VS2017_Hosted
+      pool:
+        name: Hosted VS2017
+      steps:
+      - task: lucappa.cmake-ninja-vcpkg-tasks.d855c326-b1c0-4d6f-b1c7-440ade6835fb.run-vcpkg@0
+        displayName: 'Run vcpkg'
+        inputs:
+          vcpkgTriplet: 'x64-windows'
+          vcpkgArguments: 'boost-filesystem'
+
+      - task: lucappa.cmake-ninja-vcpkg-tasks.f2b1ec7d-bc54-4cc8-b9ed-1bc7f37c9dc6.run-cmake@0
+        displayName: 'Run CMake and Ninja - CMakeLists.txt'
+        inputs:
+          cmakeListsOrSettingsJson: CMakeListsTxtAdvanced
+          cmakeListsTxtPath: CMakeLists.txt
+          useVcpkgToolchainFile: true
+          cmakeAppendedArgs: '-G Ninja -DCMAKE_BUILD_TYPE=Release'
+        
+  - job: Windows_VS2019_Hosted
+    pool:
+      name: Hosted Windows 2019 with VS2019
+    steps:
+    - task: lucappa.cmake-ninja-vcpkg-tasks.d855c326-b1c0-4d6f-b1c7-440ade6835fb.run-vcpkg@0
+      displayName: 'Run vcpkg'
+      inputs:
+        vcpkgTriplet: 'x64-windows'
+        vcpkgArguments: 'boost-filesystem'
+
+    - task: lucappa.cmake-ninja-vcpkg-tasks.f2b1ec7d-bc54-4cc8-b9ed-1bc7f37c9dc6.run-cmake@0
+      displayName: 'Run CMake and Ninja - CMakeLists.txt'
+      inputs:
+        cmakeListsOrSettingsJson: CMakeListsTxtAdvanced
+        cmakeListsTxtPath: CMakeLists.txt
+        useVcpkgToolchainFile: true
+        cmakeAppendedArgs: '-G Ninja -DCMAKE_BUILD_TYPE=Release'
