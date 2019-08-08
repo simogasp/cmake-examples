@@ -11,7 +11,7 @@ configuration:
 
 install:
     - git submodule update --init --recursive
-    - vcpkg install boost:x64-windows --featurepackages
+    - vcpkg install boost-filesystem --triplet %PLATFORM%-windows
 
 before_build:
     - md build
