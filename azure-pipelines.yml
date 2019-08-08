@@ -1,6 +1,6 @@
 
 jobs:
-  - job: Ubuntu_1604_Hosted
+  - job: Ubuntu_1604
     pool:
       vmImage: 'Ubuntu 16.04'
     steps:
@@ -8,8 +8,30 @@ jobs:
       displayName: 'Run vcpkg'
       inputs:
         vcpkgTriplet: 'x64-linux'
-        vcpkgArguments: 'boost --featurepackages'
+        vcpkgArguments: 'boost-filesystem'
 
+    - task: lucappa.cmake-ninja-vcpkg-tasks.f2b1ec7d-bc54-4cc8-b9ed-1bc7f37c9dc6.run-cmake@0
+      displayName: 'Run CMake and Ninja - CMakeLists.txt'
+      inputs:
+        cmakeListsOrSettingsJson: CMakeListsTxtAdvanced
+        cmakeListsTxtPath: CMakeLists.txt
+        useVcpkgToolchainFile: true
+        cmakeAppendedArgs: '-G Ninja -DCMAKE_BUILD_TYPE=Release'
+
+  - job: macos_10_14
+    pool:
+      vmImage: 'macOS-10.14'
+    steps:
+    - task: Bash@3
+      displayName: 'Install gcc'
+      inputs:
+        targetType: 'inline'
+        script: 'brew install gcc'
+    - task: lucappa.cmake-ninja-vcpkg-tasks.d855c326-b1c0-4d6f-b1c7-440ade6835fb.run-vcpkg@0
+      displayName: 'Run vcpkg'
+      inputs:
+        vcpkgTriplet: 'x64-osx'
+        vcpkgArguments: 'boost-filesystem'
     - task: lucappa.cmake-ninja-vcpkg-tasks.f2b1ec7d-bc54-4cc8-b9ed-1bc7f37c9dc6.run-cmake@0
       displayName: 'Run CMake and Ninja - CMakeLists.txt'
       inputs:
