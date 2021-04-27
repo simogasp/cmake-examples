@@ -1,3 +1,0 @@
-#pragma once
-
-#cmakedefine FOOER_BAR_DEBUG

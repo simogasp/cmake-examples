@@ -1,8 +1,0 @@
-@PACKAGE_INIT@
-
-include(CMakeFindDependencyMacro)
-set(Fooer_DIR @Fooer_DIR@)
-find_dependency(Fooer 3.2.1)
-
-include("${CMAKE_CURRENT_LIST_DIR}/@targets_export_name@.cmake")
-check_required_components("@PROJECT_NAME@")
