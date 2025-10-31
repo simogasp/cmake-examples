@@ -1,4 +1,10 @@
-
+schedules:
+- cron: "3 8 * * 1"
+  displayName: weekly build
+  branches:
+    include:
+    - master
+    
 jobs:
   - job: ubuntu_latest
     pool:
@@ -42,7 +48,7 @@ jobs:
         cmakeListsOrSettingsJson: CMakeListsTxtAdvanced
         cmakeListsTxtPath: CMakeLists.txt
         useVcpkgToolchainFile: true
-        cmakeAppendedArgs: '-G Ninja -DCMAKE_BUILD_TYPE=Release'
+        cmakeAppendedArgs: '-G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_POLICY_VERSION_MINIMUM=3.5'
         
   - job: windows_latest
     pool:
@@ -73,6 +79,8 @@ jobs:
       inputs:
         vcpkgTriplet: 'x64-windows'
         vcpkgArguments: 'boost-filesystem'
+        # v2025.09.17
+        vcpkgGitCommitId: '4334d8b4c8916018600212ab4dd4bbdc343065d1'
 
     - task: lucappa.cmake-ninja-vcpkg-tasks.f2b1ec7d-bc54-4cc8-b9ed-1bc7f37c9dc6.run-cmake@0
       displayName: 'Run CMake and Ninja - CMakeLists.txt'
