@@ -44,7 +44,7 @@ jobs:
         useVcpkgToolchainFile: true
         cmakeAppendedArgs: '-G Ninja -DCMAKE_BUILD_TYPE=Release'
         
-  - job: windows-latest
+  - job: windows_latest
     pool:
       name: windows-latest
     steps:
