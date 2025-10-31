@@ -46,7 +46,7 @@ jobs:
         
   - job: windows_latest
     pool:
-      name: windows-latest
+      vmImage: 'windows-latest'
     steps:
     - task: lucappa.cmake-ninja-vcpkg-tasks.d855c326-b1c0-4d6f-b1c7-440ade6835fb.run-vcpkg@0
       displayName: 'Run vcpkg'
@@ -66,7 +66,7 @@ jobs:
         
   - job: Windows_VS2019_Hosted
     pool:
-      name: windows-2019
+      vmImage: 'windows-2019'
     steps:
     - task: lucappa.cmake-ninja-vcpkg-tasks.d855c326-b1c0-4d6f-b1c7-440ade6835fb.run-vcpkg@0
       displayName: 'Run vcpkg'
